@@ -1,0 +1,25 @@
+@import "./responsive.scss";
+
+.layout {
+  height: 100vh;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 20px 0 20px;
+
+  @include lg {
+    // background-color: rgb(241, 229, 225);
+    max-width: 1140px;
+  }
+  @include md {
+    background-color: rgb(194, 208, 237);
+    max-width: 768px;
+  }
+  @include sm {
+    background-color: rgb(240, 205, 205);
+    max-width: 640px;
+  }
+
+  .content {
+    height: calc(100vh - 70px); // Subtract height of nav
+  }
+}
