@@ -27,12 +27,21 @@ nav {
 
     .logo {
       font-weight: bold;
-      font-size: 17px;
+      font-size: 22px;
       display: flex;
       align-items: center;
       gap: 5px;
+
+      @include lg {
+        font-size: 17px;
+      }
+
       img {
-        width: 20px;
+        width: 30px;
+
+        @include lg {
+          width: 20px;
+        }
       }
       span {
         @include md {
