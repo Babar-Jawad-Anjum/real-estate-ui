@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "./NavBar.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [sideMenuOpened, setSideMenuOpened] = useState(false);
+
+  const user = true;
 
   return (
     <nav>
@@ -17,10 +20,26 @@ const Navbar = () => {
         <a href="">Agents</a>
       </div>
       <div className="right">
-        <a href="">Sign in</a>
-        <a href="" className="signUp">
-          Sign up
-        </a>
+        {user ? (
+          <div className="user">
+            <img
+              src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
+              alt=""
+            />
+            <span>John Doe</span>
+            <Link to="/profile" className="profile">
+              <div className="notification">2</div>
+              <span>Profile</span>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <a href="">Sign in</a>
+            <a href="" className="signUp">
+              Sign up
+            </a>
+          </>
+        )}
         <div
           className="menuIcon"
           onClick={() => setSideMenuOpened((prev) => !prev)}
