@@ -1,34 +1,50 @@
 import Chat from "../../components/chat/chat";
 import List from "../../components/list/list";
 import "./profilePage.scss";
+import apiRequest from "../../lib/apiRequest";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  const { currentUser, updateUser } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    localStorage.removeItem("token");
+    updateUser(null);
+    navigate("/");
+  };
+
   return (
     <div className="profilePage">
       <div className="details">
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <button>Update Profile</button>
+            <Link to="/profile/update">
+              <button>Update Profile</button>
+            </Link>
           </div>
           <div className="info">
             <span>
               Avatar:{" "}
-              <img
-                src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
-                alt=""
-              />
+              <img src={currentUser?.avatar || "/noavatar.png"} alt="" />
             </span>
             <span>
-              Username: <b>John Doe</b>
+              Username: <b>{currentUser?.username}</b>
             </span>
             <span>
-              E-mail: <b>John@gnmil.com</b>
+              E-mail: <b>{currentUser?.email}</b>
             </span>
+            <button onClick={handleLogout}>Logout</button>
           </div>
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
+            <Link to="/add">
+              <button>Create New Post</button>
+            </Link>
           </div>
           <List />
           <div className="title">

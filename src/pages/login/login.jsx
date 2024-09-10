@@ -1,12 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./login.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import apiRequest from "../../lib/apiRequest";
+import { AuthContext } from "../../context/AuthContext";
 const Login = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const { updateUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,12 +20,13 @@ const Login = () => {
     const password = formData.get("password");
 
     try {
-      await apiRequest.post("/auth/login", {
+      const res = await apiRequest.post("/auth/login", {
         username,
         password,
       });
-
-      navigate("/login");
+      localStorage.setItem("token", res.data.token);
+      updateUser(res.data.data || null);
+      navigate("/");
     } catch (err) {
       setError(err?.response?.data?.message);
     } finally {
