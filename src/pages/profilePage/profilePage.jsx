@@ -9,8 +9,6 @@ const ProfilePage = () => {
   const data = useLoaderData();
   const navigate = useNavigate();
 
-  console.log(data);
-
   const { currentUser, updateUser } = useContext(AuthContext);
 
   const handleLogout = async () => {
@@ -75,7 +73,14 @@ const ProfilePage = () => {
       </div>
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+          <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.chatResponse}
+              errorElement={<p>Error loading chats!</p>}
+            >
+              {(chatResponse) => <Chat chats={chatResponse.data.data.chats} />}
+            </Await>
+          </Suspense>
         </div>
       </div>
     </div>
