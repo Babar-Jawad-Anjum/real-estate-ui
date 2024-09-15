@@ -39,8 +39,16 @@
     justify-content: space-between;
     gap: 20px;
 
-    @include lg {
+    @include md {
       gap: 10px;
+      flex-direction: column;
+    }
+
+    input,
+    select {
+      @include md {
+        width: 100%;
+      }
     }
 
     button {
@@ -58,8 +66,9 @@
         height: 24px;
       }
 
-      @include lg {
-        display: none;
+      @include md {
+        width: 100%;
+        margin-top: 5px;
       }
     }
   }

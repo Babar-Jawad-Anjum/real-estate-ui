@@ -1,3 +1,5 @@
+@import "../../scss/responsive.scss";
+
 .newPostPage {
   height: 100%;
   display: flex;
@@ -5,9 +7,17 @@
   .formContainer {
     flex: 3;
     overflow: scroll;
+    h1 {
+      font-size: 23px;
+      margin-top: 10px;
+    }
 
     .wrapper {
       margin: 30px 50px 100px 0px;
+
+      @include md {
+        margin: 5px;
+      }
 
       form {
         display: flex;
@@ -15,20 +25,30 @@
         flex-wrap: wrap;
         gap: 20px;
 
+        @include md {
+          flex-direction: column;
+        }
+
         .item {
           width: 30%;
           display: flex;
           flex-direction: column;
           gap: 5px;
+          @include md {
+            width: 100%;
+          }
 
           input {
-            padding: 20px;
+            padding: 13px;
             border-radius: 5px;
             border: 1px solid gray;
+            @include md {
+              width: 100%;
+            }
           }
 
           select {
-            padding: 19px;
+            padding: 13px;
           }
 
           &.description {
@@ -49,6 +69,10 @@
           color: white;
           font-weight: bold;
           cursor: pointer;
+          @include md {
+            width: 100%;
+            padding: 15px;
+          }
         }
       }
     }
@@ -62,7 +86,9 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
-
+    @include md {
+      display: none;
+    }
     img {
       width: 50%;
       height: 180px;

@@ -8,9 +8,9 @@ const HomePage = () => {
         <div className="wrapper">
           <h2 className="title">Find Real Estate & Get Your Dream Place</h2>
           <p className="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quas
-            magni eos qui temporibus a repellat assumenda, voluptatum nemo
-            accusamus ratione beatae natus
+            Discover your dream home with our real estate platform, offering
+            personalized listings, seamless property searches, and expert
+            guidance for every step of your journey.
           </p>
           <SearchBar />
           <div className="boxes">

@@ -7,15 +7,12 @@
   padding: 0 20px 0 20px;
 
   @include lg {
-    // background-color: rgb(241, 229, 225);
     max-width: 1140px;
   }
   @include md {
-    background-color: rgb(194, 208, 237);
     max-width: 768px;
   }
   @include sm {
-    background-color: rgb(240, 205, 205);
     max-width: 640px;
   }
 

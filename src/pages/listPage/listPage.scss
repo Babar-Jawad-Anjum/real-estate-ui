@@ -1,6 +1,13 @@
+@import "../../scss/responsive.scss";
+
 .listPage {
   display: flex;
   height: 100%;
+
+  @include sm {
+    flex-direction: column;
+    overflow: scroll;
+  }
 
   .listContainer {
     flex: 3;
@@ -13,10 +20,19 @@
       overflow-y: scroll;
       padding-bottom: 50px;
     }
+    @include sm {
+      flex: none;
+      height: max-content;
+    }
   }
   .mapContainer {
     flex: 2;
     height: 100%;
     background-color: #fcf5f3;
+
+    @include sm {
+      flex: none;
+      height: 400px;
+    }
   }
 }

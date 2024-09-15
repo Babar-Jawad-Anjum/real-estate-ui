@@ -1,3 +1,5 @@
+@import "../../scss/responsive.scss";
+
 .login {
   height: 100%;
   display: flex;
@@ -15,13 +17,13 @@
       gap: 20px;
 
       input {
-        padding: 20px;
+        padding: 15px;
         border: 1px solid gray;
         border-radius: 5px;
       }
 
       button {
-        padding: 20px;
+        padding: 15px;
         border-radius: 5px;
         border: none;
         background-color: teal;
@@ -54,6 +56,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include md {
+      display: none;
+    }
+
     img {
       width: 100%;
     }

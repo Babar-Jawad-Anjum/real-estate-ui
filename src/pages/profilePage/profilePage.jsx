@@ -4,6 +4,7 @@ import "./profilePage.scss";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import Loader from "../../components/loader/Loader";
 
 const ProfilePage = () => {
   const data = useLoaderData();
@@ -46,39 +47,53 @@ const ProfilePage = () => {
               <button>Create New Post</button>
             </Link>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<Loader />}>
             <Await
               resolve={data.postResponse}
               errorElement={<p>Error Loading Posts!</p>}
             >
-              {(postResponse) => (
-                <List posts={postResponse.data.data.userPosts} />
-              )}
+              {(postResponse) =>
+                postResponse.data.data.userPosts.length > 0 ? (
+                  <List posts={postResponse.data.data.userPosts} />
+                ) : (
+                  <p style={{ fontSize: "13px" }}>No data found!</p>
+                )
+              }
             </Await>
           </Suspense>
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<Loader />}>
             <Await
               resolve={data.postResponse}
               errorElement={<p>Error Loading Posts!</p>}
             >
-              {(postResponse) => (
-                <List posts={postResponse.data.data.savedPosts} />
-              )}
+              {(postResponse) =>
+                postResponse.data.data.savedPosts.length > 0 ? (
+                  <List posts={postResponse.data.data.savedPosts} />
+                ) : (
+                  <p style={{ fontSize: "13px" }}>No data found!</p>
+                )
+              }
             </Await>
           </Suspense>
         </div>
       </div>
       <div className="chatContainer">
         <div className="wrapper">
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<Loader />}>
             <Await
               resolve={data.chatResponse}
               errorElement={<p>Error loading chats!</p>}
             >
-              {(chatResponse) => <Chat chats={chatResponse.data.data.chats} />}
+              {(chatResponse) =>
+                chatResponse.data.data.chats.length > 0 ? (
+                  <Chat chats={chatResponse.data.data.chats} />
+                ) : (
+                  <p style={{ fontSize: "13px" }}>No data found!</p>
+                )
+              }
             </Await>
           </Suspense>
         </div>

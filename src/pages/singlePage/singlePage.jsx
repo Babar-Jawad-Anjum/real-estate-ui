@@ -66,8 +66,8 @@ const SinglePage = () => {
               <div className="featureText">
                 <span>Utilities</span>
                 {post.postDetail.utilities === "owner"
-                  ? "Owner is responsible"
-                  : "Tenant is responsible"}
+                  ? " Owner is responsible"
+                  : " Tenant is responsible"}
               </div>
             </div>
             <div className="feature">
@@ -75,15 +75,14 @@ const SinglePage = () => {
               <div className="featureText">
                 <span>Pet Policy</span>
                 {post.postDetail.pet === "allowed"
-                  ? "Pets allowed"
-                  : "Pets not allowed"}
+                  ? " Pets allowed"
+                  : " Pets not allowed"}
               </div>
             </div>
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
-                <span>Income Policy</span>
-                <p>{post.postDetail.income}</p>
+                <span>Income Policy</span> {post.postDetail.income}
               </div>
             </div>
           </div>

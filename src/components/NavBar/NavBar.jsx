@@ -6,7 +6,6 @@ import { useNotificationsStore } from "../../store/notificationsStore";
 
 const Navbar = () => {
   const [sideMenuOpened, setSideMenuOpened] = useState(false);
-
   const { currentUser } = useContext(AuthContext);
 
   const fetch = useNotificationsStore((state) => state.fetch);
@@ -17,14 +16,14 @@ const Navbar = () => {
   return (
     <nav>
       <div className="left">
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <img src="/logo.png" alt="logo" />
           <span>eEstate</span>
-        </a>
-        <a href="">Home</a>
-        <a href="">About</a>
-        <a href="">Contact</a>
-        <a href="">Agents</a>
+        </Link>
+        <Link to="">Home</Link>
+        <Link to="">About</Link>
+        <Link to="">Contact</Link>
+        <Link to="">Agents</Link>
       </div>
       <div className="right">
         {currentUser ? (
@@ -38,10 +37,10 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <a href="/login">Sign in</a>
-            <a href="/register" className="signUp">
+            <Link to="/login">Sign in</Link>
+            <Link to="/register" className="signUp">
               Sign up
-            </a>
+            </Link>
           </>
         )}
         <div
@@ -51,12 +50,12 @@ const Navbar = () => {
           <img src="/menu.png" alt="" />
         </div>
         <div className={sideMenuOpened ? "sideMenu active" : "sideMenu"}>
-          <a href="">Home</a>
-          <a href="">About</a>
-          <a href="">Contact</a>
-          <a href="">Agents</a>
-          <a href="">Sign in</a>
-          <a href="">Sign up</a>
+          <Link to="">Home</Link>
+          <Link to="">About</Link>
+          <Link to="">Contact</Link>
+          <Link to="">Agents</Link>
+          <Link to="">Sign in</Link>
+          <Link to="">Sign up</Link>
         </div>
       </div>
     </nav>
