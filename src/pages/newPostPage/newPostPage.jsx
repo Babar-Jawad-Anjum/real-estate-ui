@@ -155,7 +155,9 @@ const NewPostPage = () => {
           </form>
         </div>
       </div>
-      <div className="sideContainer"></div>
+      <div className="sideContainer">
+        <img src="/bg.png" alt="" />
+      </div>
     </div>
   );
 };

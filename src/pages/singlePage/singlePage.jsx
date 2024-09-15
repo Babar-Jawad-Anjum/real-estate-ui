@@ -48,6 +48,7 @@ const SinglePage = () => {
                 <span>{post?.user?.username}</span>
               </div>
             </div>
+            <h1 className="desc">Description</h1>
             <div
               className="bottom"
               dangerouslySetInnerHTML={{

@@ -6,6 +6,9 @@
   display: flex;
   gap: 20px;
 
+  @include sm {
+    height: 250px;
+  }
   .fullSlider {
     position: absolute;
     width: 100vw;
@@ -79,6 +82,10 @@
     gap: 20px;
     img {
       height: 100px;
+    }
+
+    @include sm {
+      gap: 10px;
     }
   }
 }

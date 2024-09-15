@@ -48,7 +48,7 @@ function App() {
     {
       path: "/",
       element: <RequireAuthLayout />,
-      // Children will represent as outlet which is used is RequireAuthLayout file
+      // Children will represent as outlet which is used in RequireAuthLayout file
       children: [
         {
           path: "/profile",

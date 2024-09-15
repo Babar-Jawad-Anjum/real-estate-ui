@@ -31,9 +31,6 @@ const ListPage = () => {
               }
             </Await>
           </Suspense>
-          {/* {data.posts.map((item) => (
-            <Card key={item.id} item={item} />
-          ))} */}
         </div>
       </div>
       <div className="mapContainer">

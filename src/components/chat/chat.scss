@@ -1,7 +1,18 @@
+@import "../../scss/responsive.scss";
+
 .chat {
   display: flex;
   height: 100%;
   flex-direction: column;
+
+  .messages::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .messages::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+  }
 
   .messages {
     flex: 1;
@@ -10,6 +21,10 @@
     gap: 20px;
     height: 100%;
     overflow-y: scroll;
+
+    @include md {
+      overflow-y: visible;
+    }
 
     h1 {
       font-weight: 300;
@@ -68,9 +83,19 @@
         cursor: pointer;
       }
     }
+
+    .center::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .center::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 10px;
+    }
+
     .center {
       height: 350px;
-      overflow: scroll;
+      overflow-y: scroll;
       padding: 20px;
       display: flex;
       flex-direction: column;

@@ -10,7 +10,7 @@ const Filter = () => {
     property: searchParams.get("property") || "",
     minPrice: searchParams.get("minPrice") || 0,
     maxPrice: searchParams.get("maxPrice") || 10000000,
-    bedroom: searchParams.get("bedroom") || 1,
+    bedroom: searchParams.get("bedroom") || "",
   });
 
   const handleChange = (e) => {
@@ -26,9 +26,11 @@ const Filter = () => {
 
   return (
     <div className="filter">
-      <h1>
-        Search results for: <b className="ml-2">{query.city}</b>
-      </h1>
+      {query.city && (
+        <h1>
+          Search results for: <b className="ml-2">{query.city}</b>
+        </h1>
+      )}
       <div className="top">
         <div className="item">
           <label htmlFor="city">Location</label>

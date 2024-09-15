@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -11,7 +11,11 @@ const Navbar = () => {
   const fetch = useNotificationsStore((state) => state.fetch);
   const number = useNotificationsStore((state) => state.number);
 
-  if (currentUser) fetch();
+  useEffect(() => {
+    if (currentUser) {
+      fetch();
+    }
+  }, [currentUser, fetch]); // Only call fetch if currentUser changes
 
   return (
     <nav>
@@ -20,7 +24,7 @@ const Navbar = () => {
           <img src="/logo.png" alt="logo" />
           <span>eEstate</span>
         </Link>
-        <Link to="">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="">About</Link>
         <Link to="">Contact</Link>
         <Link to="">Agents</Link>
@@ -49,14 +53,44 @@ const Navbar = () => {
         >
           <img src="/menu.png" alt="" />
         </div>
-        <div className={sideMenuOpened ? "sideMenu active" : "sideMenu"}>
-          <Link to="">Home</Link>
-          <Link to="">About</Link>
-          <Link to="">Contact</Link>
-          <Link to="">Agents</Link>
-          <Link to="">Sign in</Link>
-          <Link to="">Sign up</Link>
-        </div>
+        {sideMenuOpened && (
+          <div className={sideMenuOpened ? "sideMenu active" : "sideMenu"}>
+            <Link onClick={() => setSideMenuOpened((prev) => !prev)} to="/">
+              Home
+            </Link>
+            <Link onClick={() => setSideMenuOpened((prev) => !prev)} to="">
+              About
+            </Link>
+            <Link onClick={() => setSideMenuOpened((prev) => !prev)} to="">
+              Contact
+            </Link>
+            <Link onClick={() => setSideMenuOpened((prev) => !prev)} to="">
+              Agents
+            </Link>
+            <Link
+              onClick={() => setSideMenuOpened((prev) => !prev)}
+              to="/profile"
+            >
+              Profile
+            </Link>
+            {!currentUser && (
+              <>
+                <Link
+                  onClick={() => setSideMenuOpened((prev) => !prev)}
+                  to="/login"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  onClick={() => setSideMenuOpened((prev) => !prev)}
+                  to="/register"
+                >
+                  Sign up
+                </Link>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );
