@@ -1,13 +1,16 @@
+import { Suspense } from "react";
+import { Await, useLoaderData } from "react-router-dom";
 import Filter from "../../components/filter/Filter";
-import "./listPage.scss";
 import Card from "../../components/card/Card";
 import Map from "../../components/map/Map";
-import { Await, useLoaderData } from "react-router-dom";
-import { Suspense } from "react";
 import Loader from "../../components/loader/Loader";
+import "./listPage.scss";
 
 const ListPage = () => {
   const data = useLoaderData();
+
+  // const location = useLocation();
+
   return (
     <div className="listPage">
       <div className="listContainer">
@@ -16,7 +19,7 @@ const ListPage = () => {
           <Suspense fallback={<Loader />}>
             <Await
               resolve={data.postResponse}
-              errorElement={<p>Error Loading Posts!</p>}
+              errorElement={<p>Error Loading Posts! Refresh the page once.</p>}
             >
               {(postResponse) =>
                 postResponse.data.data.posts.length > 0 ? (
@@ -37,7 +40,7 @@ const ListPage = () => {
         <Suspense fallback={<Loader />}>
           <Await
             resolve={data.postResponse}
-            errorElement={<p>Error Loading Posts!</p>}
+            errorElement={<p>Error Loading Posts! Refresh the page once.</p>}
           >
             {(postResponse) =>
               postResponse.data.data.posts.length > 0 ? (

@@ -6,6 +6,7 @@ import DOMPurify from "dompurify";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
+import { toast } from "react-toastify";
 
 const SinglePage = () => {
   const { post } = useLoaderData();
@@ -22,12 +23,23 @@ const SinglePage = () => {
     }
 
     try {
-      await apiRequest.post("/users/save", { postId: post.id });
+      const data = await apiRequest.post("/users/save", { postId: post.id });
+      toast.success(data.data.message);
     } catch (err) {
       console.log(err);
       setIsSaved((prev) => !prev);
     }
   };
+
+  const createChat = async (receiverId) => {
+    try {
+      await apiRequest.post("/chats", { receiverId });
+      navigate("/profile");
+    } catch (err) {
+      err.status === 400 ? navigate("/profile") : "";
+    }
+  };
+
   return (
     <div className="singlePage">
       <div className="details">
@@ -131,7 +143,7 @@ const SinglePage = () => {
             <Map items={[post]} />
           </div>
           <div className="buttons">
-            <button>
+            <button onClick={() => createChat(post.user?.id)}>
               <img src="/chat.png" alt="" />
               <span>Send a Message</span>
             </button>

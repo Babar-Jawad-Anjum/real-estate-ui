@@ -7,9 +7,9 @@ const types = ["buy", "rent"];
 const SearchBar = () => {
   const [query, setQuery] = useState({
     type: "buy",
-    city: "London",
+    city: "",
     minPrice: 0,
-    maxPrice: 0,
+    maxPrice: 100000,
   });
 
   const switchTypes = (type) => {

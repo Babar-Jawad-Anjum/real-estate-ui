@@ -18,6 +18,9 @@ const ProfilePage = () => {
     navigate("/");
   };
 
+
+  
+
   return (
     <div className="profilePage">
       <div className="details">
@@ -50,7 +53,7 @@ const ProfilePage = () => {
           <Suspense fallback={<Loader />}>
             <Await
               resolve={data.postResponse}
-              errorElement={<p>Error Loading Posts!</p>}
+              errorElement={<p>Error Loading Posts! Refresh the page once.</p>}
             >
               {(postResponse) =>
                 postResponse.data.data.userPosts.length > 0 ? (
@@ -67,7 +70,7 @@ const ProfilePage = () => {
           <Suspense fallback={<Loader />}>
             <Await
               resolve={data.postResponse}
-              errorElement={<p>Error Loading Posts!</p>}
+              errorElement={<p>Error Loading Posts! Refresh the page once.</p>}
             >
               {(postResponse) =>
                 postResponse.data.data.savedPosts.length > 0 ? (

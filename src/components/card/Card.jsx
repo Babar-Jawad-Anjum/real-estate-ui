@@ -1,7 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./card.scss";
+import apiRequest from "../../lib/apiRequest";
+import { toast } from "react-toastify";
 
 const Card = ({ item }) => {
+  const navigate = useNavigate();
+  const handleSave = async (postId) => {
+    try {
+      const data = await apiRequest.post("/users/save", { postId });
+      toast.success(data.data.message);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const createChat = async (receiverId) => {
+    try {
+      await apiRequest.post("/chats", { receiverId });
+      navigate("/profile");
+    } catch (err) {
+      err.status === 400 ? navigate("/profile") : "";
+    }
+  };
   return (
     <div className="card">
       <Link to={`/${item.id}`} className="imageContainer">
@@ -28,10 +48,16 @@ const Card = ({ item }) => {
             </div>
           </div>
           <div className="icons">
-            <div className="icon">
+            <div
+              className="icon"
+              onClick={() => handleSave(item.id)}
+              style={{
+                backgroundColor: item.isSaved ? "#fece51" : "",
+              }}
+            >
               <img src="/save.png" alt="" />
             </div>
-            <div className="icon">
+            <div className="icon" onClick={() => createChat(item.user?.id)}>
               <img src="/chat.png" alt="" />
             </div>
           </div>

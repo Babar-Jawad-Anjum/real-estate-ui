@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
+import { postImages } from "../../lib/dummyData";
 
 const NewPostPage = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const NewPostPage = () => {
           property: inputs.property,
           latitude: inputs.latitude,
           longitude: inputs.longitude,
-          images: [],
+          images: postImages.sort(() => 0.5 - Math.random()).slice(0, 4),
         },
         postDetail: {
           desc: value,

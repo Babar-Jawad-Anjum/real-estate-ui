@@ -26,8 +26,8 @@ const Navbar = () => {
         </Link>
         <Link to="/">Home</Link>
         <Link to="">About</Link>
-        <Link to="">Contact</Link>
         <Link to="">Agents</Link>
+        <Link to="/list">Properties</Link>
       </div>
       <div className="right">
         {currentUser ? (
@@ -62,10 +62,10 @@ const Navbar = () => {
               About
             </Link>
             <Link onClick={() => setSideMenuOpened((prev) => !prev)} to="">
-              Contact
-            </Link>
-            <Link onClick={() => setSideMenuOpened((prev) => !prev)} to="">
               Agents
+            </Link>
+            <Link onClick={() => setSideMenuOpened((prev) => !prev)} to="/list">
+              Properties
             </Link>
             <Link
               onClick={() => setSideMenuOpened((prev) => !prev)}
