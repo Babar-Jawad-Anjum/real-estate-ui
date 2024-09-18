@@ -9,7 +9,7 @@ export const SocketContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    setSocket(io("http://localhost:8800"));
+    setSocket(io("https://real-estate-api-d8bc.onrender.com"));
   }, []);
 
   useEffect(() => {
