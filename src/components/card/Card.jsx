@@ -3,12 +3,13 @@ import "./card.scss";
 import apiRequest from "../../lib/apiRequest";
 import { toast } from "react-toastify";
 
-const Card = ({ item }) => {
+const Card = ({ item, loadLatestData }) => {
   const navigate = useNavigate();
   const handleSave = async (postId) => {
     try {
       const data = await apiRequest.post("/users/save", { postId });
       toast.success(data.data.message);
+      loadLatestData();
     } catch (err) {
       console.log(err);
     }
@@ -28,13 +29,21 @@ const Card = ({ item }) => {
         <img src={item.images[0]} alt="" />
       </Link>
       <div className="textContainer">
-        <h2 className="title">
-          <Link to={`/${item.id}`}>{item.title}</Link>
-        </h2>
-        <p className="address">
-          <img src="/pin.png" alt="" />
-          <span>{item.address}</span>
-        </p>
+        <div className="headline">
+          <div className="titleSec">
+            <h2 className="title">
+              <Link to={`/${item.id}`}>{item.title}</Link>
+            </h2>
+            <p className="address">
+              <img src="/pin.png" alt="" />
+              <span>{item.address}</span>
+            </p>
+          </div>
+          <div className="userDetails">
+            <img src={item.user?.avatar || "/noavatar.png"} alt="" />
+            <p>{item.user?.username}</p>
+          </div>
+        </div>
         <p className="price">$ {item.price}</p>
         <div className="bottom">
           <div className="features">

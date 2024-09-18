@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import "./profileUpdatePage.scss";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
-import UploadWidget from "../../components/uploadWidget/UploadWidget";
+// import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 
 const ProfileUpdatePage = () => {
@@ -28,7 +28,7 @@ const ProfileUpdatePage = () => {
       });
 
       updateUser(res.data.data.user);
-      navigate("/");
+      navigate("/profile");
     } catch (err) {
       console.log(err);
       setError(err?.response?.data?.message);
@@ -68,7 +68,7 @@ const ProfileUpdatePage = () => {
       </div>
       <div className="sideContainer">
         <img src={avatar || "/noavatar.png"} alt="" className="avatar" />
-        <UploadWidget
+        {/* <UploadWidget
           uwConfig={{
             cloudName: "dp1odktqp",
             uploadPreset: "estate",
@@ -77,7 +77,7 @@ const ProfileUpdatePage = () => {
             folder: "avatars",
           }}
           setAvatar={setAvatar}
-        />
+        /> */}
       </div>
     </div>
   );

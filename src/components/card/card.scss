@@ -28,30 +28,56 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
+    .headline {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      .userDetails {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        background-color: rgb(244, 239, 239);
+        padding: 12px 25px;
+        height: max-content;
+        border-radius: 5px;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+        p {
+          font-size: 13px;
+        }
+      }
+
+      .titleSec {
+        .title {
+          font-size: 20px;
+          font-weight: 600;
+          color: #444;
+          transition: all 0.4s ease;
+
+          &:hover {
+            color: #000;
+            scale: 1.01;
+          }
+        }
+
+        .address {
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          color: #888;
+          margin-top: 20px;
+        }
+      }
+    }
 
     img {
       width: 16px;
       height: 16px;
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #444;
-      transition: all 0.4s ease;
-
-      &:hover {
-        color: #000;
-        scale: 1.01;
-      }
-    }
-
-    .address {
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: #888;
     }
 
     .price {

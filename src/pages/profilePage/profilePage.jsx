@@ -1,13 +1,27 @@
 import Chat from "../../components/chat/chat";
 import List from "../../components/list/list";
 import "./profilePage.scss";
-import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Await,
+  Link,
+  useFetcher,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 import { Suspense, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Loader from "../../components/loader/Loader";
 
 const ProfilePage = () => {
   const data = useLoaderData();
+
+  const fetcher = useFetcher();
+
+  // Function to load the latest data
+  const loadLatestData = () => {
+    fetcher.load("/profile");
+  };
+
   const navigate = useNavigate();
 
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -18,8 +32,7 @@ const ProfilePage = () => {
     navigate("/");
   };
 
-
-  
+  const postsData = fetcher.data?.postResponse || data.postResponse;
 
   return (
     <div className="profilePage">
@@ -52,12 +65,15 @@ const ProfilePage = () => {
           </div>
           <Suspense fallback={<Loader />}>
             <Await
-              resolve={data.postResponse}
+              resolve={postsData}
               errorElement={<p>Error Loading Posts! Refresh the page once.</p>}
             >
               {(postResponse) =>
                 postResponse.data.data.userPosts.length > 0 ? (
-                  <List posts={postResponse.data.data.userPosts} />
+                  <List
+                    posts={postResponse.data.data.userPosts}
+                    loadLatestData={loadLatestData}
+                  />
                 ) : (
                   <p style={{ fontSize: "13px" }}>No data found!</p>
                 )
@@ -69,12 +85,15 @@ const ProfilePage = () => {
           </div>
           <Suspense fallback={<Loader />}>
             <Await
-              resolve={data.postResponse}
+              resolve={postsData}
               errorElement={<p>Error Loading Posts! Refresh the page once.</p>}
             >
               {(postResponse) =>
                 postResponse.data.data.savedPosts.length > 0 ? (
-                  <List posts={postResponse.data.data.savedPosts} />
+                  <List
+                    posts={postResponse.data.data.savedPosts}
+                    loadLatestData={loadLatestData}
+                  />
                 ) : (
                   <p style={{ fontSize: "13px" }}>No data found!</p>
                 )
