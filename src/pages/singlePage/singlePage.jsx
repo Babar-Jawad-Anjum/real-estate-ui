@@ -32,6 +32,9 @@ const SinglePage = () => {
   };
 
   const createChat = async (receiverId) => {
+    if (!currentUser) {
+      return navigate("/login");
+    }
     try {
       await apiRequest.post("/chats", { receiverId });
       navigate("/profile");

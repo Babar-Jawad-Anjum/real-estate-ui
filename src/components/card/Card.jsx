@@ -2,10 +2,17 @@ import { Link, useNavigate } from "react-router-dom";
 import "./card.scss";
 import apiRequest from "../../lib/apiRequest";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 const Card = ({ item, loadLatestData }) => {
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
+
   const handleSave = async (postId) => {
+    if (!currentUser) {
+      return navigate("/login");
+    }
     try {
       const data = await apiRequest.post("/users/save", { postId });
       toast.success(data.data.message);
@@ -16,6 +23,9 @@ const Card = ({ item, loadLatestData }) => {
   };
 
   const createChat = async (receiverId) => {
+    if (!currentUser) {
+      return navigate("/login");
+    }
     try {
       await apiRequest.post("/chats", { receiverId });
       navigate("/profile");
